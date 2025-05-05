@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>癌症代謝療法：從瓦伯格效應到細胞治療</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563EB;
+            --secondary-color: #10B981;
+            --accent-color: #7C3AED;
+            --background-color: #F8FAFC;
+            --text-color: #1E293B;
+            --border-color: #E2E8F0;
+        }
+
+        .language-toggle {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .lang-btn:hover {
+            background: var(--background-color);
+        }
+
+        /* Language visibility classes */
+        .zh {
+            display: block;
+        }
+
+        .en {
+            display: none;
+        }
+
+        body.lang-en .zh {
+            display: none;
+        }
+
+        body.lang-en .en {
+            display: block;
+        }
+
+        body.lang-zh .zh {
+            display: block;
+        }
+
+        body.lang-zh .en {
+            display: none;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 0.5rem 0;
+        }
+
+        .nav-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: var(--background-color);
+        }
+
+        .nav-link.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-link.external {
+            background: white;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-link.external:hover {
+            background: var(--background-color);
+        }
+
+        .video-container {
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            padding-top: 50px; /* Reduced from 80px to account for smaller nav */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 0 0 20px 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: opacity 0.3s ease;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box {
+            background: var(--background-color);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .list {
+            list-style-type: none;
+            margin: 1rem 0;
+        }
+
+        .list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .list li:before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .reference {
+            font-size: 0.875rem;
+            color: #64748B;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-links">
+                <a href="#warburg" class="nav-link" data-zh="瓦伯格效應" data-en="Warburg Effect">瓦伯格效應</a>
+                <a href="#pet" class="nav-link" data-zh="PET掃描" data-en="PET Scan">PET掃描</a>
+                <a href="#brown-fat" class="nav-link" data-zh="棕色脂肪" data-en="Brown Fat">棕色脂肪</a>
+                <a href="#nutrition" class="nav-link" data-zh="營養戰略" data-en="Nutrition Strategy">營養戰略</a>
+                <a href="index.html" class="nav-link external" data-zh="飲食清單" data-en="Food List">飲食清單</a>
+            </div>
+            <div class="language-toggle">
+                <button class="lang-btn active" data-lang="zh">中文</button>
+                <button class="lang-btn" data-lang="en">English</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="section" id="warburg">
+            <h2 class="zh">瓦伯格效應：癌症代謝的基本原理</h2>
+            <h2 class="en">Warburg Effect: The Basic Principle of Cancer Metabolism</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/ze2rmsLiTfA" 
+                        title="癌症代謝療法視頻 | Cancer Metabolism Therapy Video" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen></iframe>
+            </div>
+            <p class="zh">Otto Warburg在1924年發現了一個獨特的現象：癌細胞即使在氧氣充足的情況下，也會以極快的速度消耗葡萄糖並將其轉化為乳酸。這種現象後來被稱為"瓦伯格效應"或"有氧糖酵解"。</p>
+            <p class="en">In 1924, Otto Warburg discovered a unique phenomenon: cancer cells consume glucose at an extremely rapid rate and convert it into lactate, even in the presence of sufficient oxygen. This phenomenon later became known as the "Warburg Effect" or "aerobic glycolysis."</p>
+            
+            <div class="highlight-box">
+                <h3 class="zh">瓦伯格效應的主要特點</h3>
+                <h3 class="en">Key Characteristics of the Warburg Effect</h3>
+                <ul class="list">
+                    <li class="zh">癌細胞不使用高效的氧化磷酸化途徑</li>
+                    <li class="en">Cancer cells do not use the efficient oxidative phosphorylation pathway</li>
+                    <li class="zh">停留在糖酵解階段，每個葡萄糖分子只產生2個ATP（而非正常細胞的30多個ATP）</li>
+                    <li class="en">They stop at the glycolysis stage, producing only 2 ATP per glucose molecule (compared to over 30 ATP in normal cells)</li>
+                    <li class="zh">剩餘能量以乳酸形式排出</li>
+                    <li class="en">The remaining energy is excreted as lactate</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="pet">
+            <h2 class="zh">PET掃描：觀察癌症的「飢餓」</h2>
+            <h2 class="en">PET Scan: Observing Cancer's "Hunger"</h2>
+            <p class="zh">正電子發射斷層掃描（PET）是觀察癌症代謝活動的重要工具。這項技術通過注射放射性標記的葡萄糖，追蹤體內哪些部位最快消耗葡萄糖。在掃描圖像上，癌症腫瘤呈現為明亮的亮點，顯示它們消耗葡萄糖的速度與大腦和心臟相當。</p>
+            <p class="en">Positron Emission Tomography (PET) is an important tool for observing cancer metabolic activity. This technology tracks which parts of the body consume glucose most rapidly by injecting radioactively labeled glucose. In the scan images, cancer tumors appear as bright spots, showing that they consume glucose at rates comparable to the brain and heart.</p>
+        </section>
+
+        <section class="section" id="brown-fat">
+            <h2 class="zh">棕色脂肪與癌症競爭：新的治療思路</h2>
+            <h2 class="en">Brown Fat vs. Cancer: A New Therapeutic Approach</h2>
+            <p class="zh">2022年發表在《自然》雜誌上的一項研究表明，冷誘導的棕色脂肪激活可以阻礙糖酵解並減少多種癌症的腫瘤生長，加深了我們對脂肪代謝在癌症中複雜作用的理解。</p>
+            <p class="en">A 2022 study published in Nature showed that cold-induced brown fat activation can inhibit glycolysis and reduce tumor growth in various cancers, deepening our understanding of the complex role of fat metabolism in cancer.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4 class="zh">研究發現</h4>
+                    <h4 class="en">Research Findings</h4>
+                    <p class="zh">將腫瘤植入小鼠並將其暴露在寒冷環境中，會明顯抑制各種實體腫瘤的生長，包括臨床上難以治療的胰腺癌。</p>
+                    <p class="en">Implanting tumors in mice and exposing them to cold environments significantly inhibited the growth of various solid tumors, including clinically challenging pancreatic cancer.</p>
+                </div>
+                <div class="card">
+                    <h4 class="zh">機制</h4>
+                    <h4 class="en">Mechanism</h4>
+                    <p class="zh">冷誘導的棕色脂肪組織（BAT）激活大幅降低血糖，阻礙了癌細胞的糖酵解代謝。</p>
+                    <p class="en">Cold-induced brown adipose tissue (BAT) activation significantly reduces blood glucose levels, hindering cancer cells' glycolytic metabolism.</p>
+                </div>
+            </div>
+
+            <h2 id="patient-activities">患者活動建議</h2>
+            <div class="highlight-box">
+                <p>基於棕色脂肪研究的發現，我們可以為癌症患者提供以下活動建議：</p>
+                <ul class="list">
+                    <li>適度暴露於較低溫度環境（如16-18°C）可能有助於激活棕色脂肪</li>
+                    <li>進行輕度至中度的運動，如散步、瑜伽或太極，可以幫助維持體溫並促進棕色脂肪活動</li>
+                    <li>避免長時間處於過熱環境，因為高溫會抑制棕色脂肪的活性</li>
+                    <li>保持規律的作息時間，有助於維持正常的代謝節律</li>
+                    <li>在醫生指導下，可以嘗試間歇性冷暴露療法（如冷水浴或冷敷）</li>
+                </ul>
+                <p>注意：這些建議應在醫生指導下進行，並根據個人情況調整。過度暴露於寒冷環境可能對某些患者造成風險。</p>
+            </div>
+        </section>
+
+        <section class="section" id="nutrition">
+            <h2 class="zh">給當前癌症患者的飲食建議</h2>
+            <h2 class="en">Dietary Recommendations for Current Cancer Patients</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4 class="zh">維持均衡營養</h4>
+                    <h4 class="en">Maintain Balanced Nutrition</h4>
+                    <p class="zh">完全避免糖分可能導致身體營養不良，而癌細胞仍能通過其他途徑獲取能量。重點應放在整體健康飲食上。</p>
+                    <p class="en">Completely avoiding sugar may lead to malnutrition while cancer cells can still obtain energy through other pathways. Focus should be on overall healthy eating.</p>
+                </div>
+                <div class="card">
+                    <h4 class="zh">減少碳水化合物</h4>
+                    <h4 class="en">Reduce Carbohydrates</h4>
+                    <p class="zh">雖然不必完全避免碳水化合物，但應選擇低血糖指數的碳水化合物，避免血糖快速上升。</p>
+                    <p class="en">While complete avoidance of carbohydrates is not necessary, choose low glycemic index carbohydrates to avoid rapid blood sugar spikes.</p>
+                </div>
+                <div class="card">
+                    <h4 class="zh">增加蛋白質和健康脂肪</h4>
+                    <h4 class="en">Increase Protein and Healthy Fats</h4>
+                    <p class="zh">這些營養素提供替代能源，不會像糖那樣直接刺激癌細胞生長。</p>
+                    <p class="en">These nutrients provide alternative energy sources that don't directly stimulate cancer cell growth like sugar does.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="nutrition-strategy">
+            <div class="section-header">
+                <h2 class="zh">癌症患者的營養戰略</h2>
+                <h2 class="en">Nutrition Strategy for Cancer Patients</h2>
+                <a href="index.html" class="menu-link zh">查看食物菜單 →</a>
+                <a href="index.html" class="menu-link en">View Food Menu →</a>
+            </div>
+            <div class="highlight-box">
+                <h3 class="zh">顯著減少碳水化合物</h3>
+                <h3 class="en">Significantly Reduce Carbohydrates</h3>
+                <ul class="list">
+                    <li class="zh">完全避免白糖、糖漿、蜂蜜和人工甜味劑</li>
+                    <li class="en">Completely avoid white sugar, syrup, honey, and artificial sweeteners</li>
+                    <li class="zh">排除白麵包、白米、精製麵食和糕點</li>
+                    <li class="en">Eliminate white bread, white rice, refined pasta, and pastries</li>
+                    <li class="zh">避免含糖飲料、果汁和運動飲料</li>
+                    <li class="en">Avoid sugary drinks, fruit juices, and sports drinks</li>
+                    <li class="zh">限制水果攝入，特別是高糖水果</li>
+                    <li class="en">Limit fruit intake, especially high-sugar fruits</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3 class="zh">大幅增加健康脂肪攝入</h3>
+                <h3 class="en">Significantly Increase Healthy Fat Intake</h3>
+                <ul class="list">
+                    <li class="zh">橄欖油、椰子油和魚油（富含omega-3脂肪酸）</li>
+                    <li class="en">Olive oil, coconut oil, and fish oil (rich in omega-3 fatty acids)</li>
+                    <li class="zh">鱷梨、堅果和種子（如亞麻籽、奇亞籽）</li>
+                    <li class="en">Avocados, nuts, and seeds (such as flaxseeds, chia seeds)</li>
+                    <li class="zh">脂肪含量適中的肉類，優先選擇草飼和有機肉類</li>
+                    <li class="en">Moderate-fat meats, prioritizing grass-fed and organic options</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3 class="zh">高質量蛋白質</h3>
+                <h3 class="en">High-Quality Protein</h3>
+                <p class="zh">優先選擇以下蛋白質來源：</p>
+                <p class="en">Prioritize the following protein sources:</p>
+                <ul class="list">
+                    <li class="zh">全蛋（優先選擇放養雞蛋）</li>
+                    <li class="en">Whole eggs (preferably free-range)</li>
+                    <li class="zh">豆類和豆製品（適量，注意其碳水化合物含量）</li>
+                    <li class="en">Legumes and soy products (in moderation, mindful of their carbohydrate content)</li>
+                    <li class="zh">野生捕獲的魚類和海鮮</li>
+                    <li class="en">Wild-caught fish and seafood</li>
+                    <li class="zh">草飼和有機肉類</li>
+                    <li class="en">Grass-fed and organic meats</li>
+                    <li class="zh">家禽（優先選擇放養的）</li>
+                    <li class="en">Poultry (preferably free-range)</li>
+                </ul>
+                <p class="reference zh">蛋白質對維持免疫功能和肌肉質量至關重要，尤其是在接受治療期間。然而，某些癌症類型可能依賴特定氨基酸，因此應在專業指導下調整蛋白質攝入量。</p>
+                <p class="reference en">Protein is crucial for maintaining immune function and muscle mass, especially during treatment. However, certain cancer types may depend on specific amino acids, so protein intake should be adjusted under professional guidance.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="zh">重要提醒</h2>
+            <h2 class="en">Important Reminder</h2>
+            <p class="zh">這種飲食策略應在腫瘤科醫生或營養師的指導下實施，因為：</p>
+            <p class="en">This dietary strategy should be implemented under the guidance of an oncologist or nutritionist because:</p>
+            <ul class="list">
+                <li class="zh">不同類型的癌症可能對不同的代謝策略有不同的反應</li>
+                <li class="en">Different types of cancer may respond differently to various metabolic strategies</li>
+                <li class="zh">患者的整體健康狀況和其他疾病可能影響適當的飲食方案</li>
+                <li class="en">The patient's overall health and other conditions may affect the appropriate dietary plan</li>
+                <li class="zh">治療階段（診斷、主動治療、緩解或晚期）需要不同的營養支持</li>
+                <li class="en">Different treatment stages (diagnosis, active treatment, remission, or advanced) require different nutritional support</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // Get all elements
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const langBtns = document.querySelectorAll('.lang-btn');
+
+        // Create a language data array
+        const languageData = {
+            'zh': {
+                'warburg': '瓦伯格效應',
+                'pet': 'PET掃描',
+                'brown-fat': '棕色脂肪',
+                'nutrition': '營養戰略',
+                'food-list': '飲食清單',
+                'nutrition-strategy': '營養戰略',
+                'menu-link': '查看食物菜單 →'
+            },
+            'en': {
+                'warburg': 'Warburg Effect',
+                'pet': 'PET Scan',
+                'brown-fat': 'Brown Fat',
+                'nutrition': 'Nutrition Strategy',
+                'food-list': 'Food List',
+                'nutrition-strategy': 'Nutrition Strategy',
+                'menu-link': 'View Food Menu →'
+            }
+        };
+
+        // Language toggle functionality
+        function switchLanguage(lang) {
+            // Update body class
+            document.body.className = `lang-${lang}`;
+            
+            // Update active button
+            langBtns.forEach(b => b.classList.remove('active'));
+            document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+
+            // Update navigation text using our language data
+            navLinks.forEach(link => {
+                const linkId = link.getAttribute('href').slice(1);
+                // Special case for external link
+                if (link.classList.contains('external')) {
+                    link.textContent = languageData[lang]['food-list'];
+                } else if (languageData[lang][linkId]) {
+                    link.textContent = languageData[lang][linkId];
+                } else if (link.dataset[lang]) {
+                    // Fallback to the existing data attributes
+                    link.textContent = link.dataset[lang];
+                }
+            });
+
+            // Update menu links
+            document.querySelectorAll('.menu-link').forEach(link => {
+                link.textContent = languageData[lang]['menu-link'];
+            });
+        }
+
+        // Set up language button click events
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+                switchLanguage(lang);
+            });
+        });
+
+        // Scroll event listener for active section highlighting
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.classList.contains('external')) return;
+                
+                e.preventDefault();
+                const targetId = link.getAttribute('href').slice(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    const offset = 60; // Account for fixed navigation bar
+                    const targetPosition = targetSection.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
