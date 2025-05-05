@@ -1,274 +1,434 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>健康低糖低碳水抗癌菜譜</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-     
-    
+    :root {
+      --primary-color: #2563EB;
+      --secondary-color: #10B981;
+      --accent-color: #7C3AED;
+      --background-color: #F8FAFC;
+      --text-color: #1E293B;
+      --border-color: #E2E8F0;
+    }
+
+    .nav-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      padding: 0.5rem 0;
+    }
+
+    .nav-content {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--background-color);
+    }
+
+    .nav-link.active {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .nav-link.external {
+      background: white;
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+    }
+
+    .nav-link.external:hover {
+      background: var(--background-color);
+    }
+
     body {
-  font-family: "Noto Sans TC", Arial, sans-serif;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  color: #2c3e50;
-  margin: 0;
-  padding: 30px;
-  line-height: 1.8;
-  min-height: 100vh;
-}
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.8;
+      padding-top: 50px;
+    }
 
-h1, h2 {
-  text-align: center;
-  color: #234e52;
-  margin-bottom: 30px;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
 
-h1 {
-  font-size: 2.5em;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
-  padding-bottom: 15px;
-}
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      border-radius: 0 0 20px 20px;
+    }
 
-h1::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: #2a9d8f;
-  border-radius: 2px;
-}
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
 
-p.reminder {
-  text-align: center;
-  background: linear-gradient(to right, #e6f7f5, #fff);
-  border-left: 6px solid #2a9d8f;
-  padding: 20px;
-  font-size: 1.1em;
-  border-radius: 12px;
-  margin: 30px auto;
-  max-width: 90%;
-  box-shadow: 0 4px 15px rgba(42, 157, 143, 0.1);
-}
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
+    h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  margin: 25px 0;
-}
+    .highlight-box {
+      background: var(--background-color);
+      border-left: 4px solid var(--secondary-color);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
 
-li {
-  margin: 0;
-  padding: 15px 20px;
-  background: #ffffff;
-  border-left: 4px solid #2a9d8f;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  position: relative;
-  overflow: hidden;
-}
+    .list {
+      list-style-type: none;
+      margin: 1rem 0;
+    }
 
-li:hover {
-  transform: translateY(-3px);
-  background: #f8fdfb;
-  box-shadow: 0 6px 15px rgba(42, 157, 143, 0.15);
-  border-left-width: 6px;
-}
+    .list li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-li::before {
-  content: "🍽";
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0.1;
-  font-size: 1.5em;
-}
+    .list li:before {
+      content: "•";
+      color: var(--secondary-color);
+      position: absolute;
+      left: 0;
+    }
 
-h2 {
-  color: #1a365d;
-  font-size: 1.8em;
-  margin-top: 40px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #e2e8f0;
-}
+    .list li:hover {
+      color: var(--primary-color);
+    }
 
-@media (max-width: 768px) {
-  body {
-    padding: 15px;
-  }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
 
-  .container {
-    padding: 20px;
-  }
+    .card {
+      background: var(--background-color);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
 
-  ul {
-    grid-template-columns: 1fr;
-  }
+    .card h4 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
 
-  h1 {
-    font-size: 2em;
-  }
+    .reference {
+      font-size: 0.875rem;
+      color: #64748B;
+      margin-top: 0.5rem;
+    }
 
-  p.reminder {
-    font-size: 1em;
-    padding: 15px;
-  }
-}
+    .menu-link {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--secondary-color);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 1rem;
+    }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-    color: #e2e8f0;
-  }
+    .menu-link:hover {
+      background-color: var(--secondary-color);
+      color: white;
+    }
 
-  .container {
-    background: #2d3748;
-  }
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
 
-  h1, h2 {
-    color: #90cdf4;
-  }
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
 
-  li {
-    background: #2d3748;
-    border-left-color: #38b2ac;
-  }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-color);
+    }
 
-  li:hover {
-    background: #283141;
-  }
+    .modal-title {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
 
-  p.reminder {
-    background: linear-gradient(to right, #2c4a46, #2d3748);
-    color: #e2e8f0;
-  }
-}
+    .modal-recipe {
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .section {
+        padding: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
+  <nav class="nav-container">
+    <div class="nav-content">
+      <div class="nav-links">
+        <a href="#protein" class="nav-link">高蛋白類</a>
+        <a href="#mushroom" class="nav-link">菌菇類</a>
+        <a href="#bean" class="nav-link">豆類</a>
+        <a href="#egg" class="nav-link">蛋類</a>
+        <a href="#vegetable" class="nav-link">蔬菜類</a>
+        <a href="fat.html" class="nav-link external">查看研究</a>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
-    <h1>健康低糖低碳水抗癌菜譜</h1>
-    <p class="reminder">提醒：所有菜式禁止使用糖，並保持低碳水化合物，強調營養均衡。使用椰奶時選擇無糖版本。另外，由於絕大部份現代所有水果都是配種成高果糖品種，一定要避免吃生果。
-      。</p>
+    <section class="section">
+      <h1>健康低糖低碳水抗癌菜譜</h1>
+      <div class="highlight-box">
+        <p>提醒：所有菜式禁止使用糖，並保持低碳水化合物，強調營養均衡。使用椰奶時選擇無糖版本。另外，由於絕大部份現代所有水果都是配種成高果糖品種，一定要避免吃生果。</p>
+      </div>
 
-    <h2>高蛋白類菜式</h2>
-    <ul>
-      <li>蒸魚 (Steamed Fish)</li>
-      <li>清蒸雞 (Steamed Chicken)</li>
-      <li>豉油雞 (Soy Sauce Chicken, no sugar)</li>
-      <li>白切雞 (Poached Chicken)</li>
-      <li>鹽焗雞 (Salt-Baked Chicken)</li>
-      <li>香煎鱈魚 (Pan-Seared Cod)</li>
-      <li>煎三文魚 (Pan-Seared Salmon)</li>
-      <li>豆腐魚片湯 (Tofu and Fish Fillet Soup)</li>
-      <li>照燒雞扒 (Japanese Teriyaki Chicken, no sugar)</li>
-      <li>香煎雞胸肉 (Pan-Seared Chicken Breast)</li>
-    </ul>
+      <h2 id="protein">高蛋白類菜式</h2>
+      <ul class="list">
+        <li data-recipe="蒸魚：新鮮魚肉洗淨，加入薑片、蔥段，大火蒸8-10分鐘，淋上熱油和醬油即可。">蒸魚 (Steamed Fish)</li>
+        <li data-recipe="清蒸雞：整雞洗淨，加入薑片、蔥段，大火蒸20-25分鐘，切塊後淋上熱油和醬油。">清蒸雞 (Steamed Chicken)</li>
+        <li data-recipe="豉油雞：雞肉用無糖醬油、薑片、蔥段醃製30分鐘，小火慢煮至熟透，收汁即可。">豉油雞 (Soy Sauce Chicken, no sugar)</li>
+        <li data-recipe="白切雞：整雞洗淨，加入薑片、蔥段，小火煮15分鐘，關火燜10分鐘，切塊後沾薑蔥醬。">白切雞 (Poached Chicken)</li>
+        <li data-recipe="鹽焗雞：雞肉用鹽、薑片、蔥段醃製2小時，包上錫紙，烤箱200度烤40分鐘。">鹽焗雞 (Salt-Baked Chicken)</li>
+        <li data-recipe="香煎鱈魚：鱈魚片用鹽、黑胡椒醃製，中火煎至兩面金黃，加入檸檬汁提味。">香煎鱈魚 (Pan-Seared Cod)</li>
+        <li data-recipe="煎三文魚：三文魚片用鹽、黑胡椒醃製，中火煎至兩面金黃，加入檸檬汁提味。">煎三文魚 (Pan-Seared Salmon)</li>
+        <li data-recipe="豆腐魚片湯：魚片用鹽醃製，豆腐切塊，加入薑片、蔥段煮湯，最後加入魚片煮熟。">豆腐魚片湯 (Tofu and Fish Fillet Soup)</li>
+        <li data-recipe="照燒雞扒：雞肉用無糖醬油、薑片、蒜末醃製，煎至兩面金黃，加入照燒汁收汁。">照燒雞扒 (Japanese Teriyaki Chicken, no sugar)</li>
+        <li data-recipe="香煎雞胸肉：雞胸肉用鹽、黑胡椒醃製，中火煎至兩面金黃，切片即可。">香煎雞胸肉 (Pan-Seared Chicken Breast)</li>
+      </ul>
 
-    <h2>菌菇類菜式</h2>
-    <ul>
-      <li>香菇雞湯 (Chicken Soup with Shiitake Mushrooms)</li>
-      <li>金針菇炒蛋 (Stir-Fried Enoki Mushrooms with Eggs)</li>
-      <li>茶樹菇燉雞 (Braised Chicken with Tea Tree Mushrooms)</li>
-      <li>蠔油炒蘑菇 (Stir-Fried Mushrooms in Oyster Sauce, no sugar)</li>
-      <li>雜菌扒芥蘭 (Braised Mixed Mushrooms with Kale)</li>
-      <li>香煎杏鮑菇 (Pan-Seared King Oyster Mushrooms)</li>
-      <li>松露炒蛋 (Scrambled Eggs with Truffle)</li>
-      <li>金針菇豆腐湯 (Enoki Mushroom and Tofu Soup)</li>
-      <li>菌菇蒸蛋 (Steamed Egg with Mushrooms)</li>
-      <li>雜菌湯 (Mixed Mushroom Soup)</li>
-      <li>猴頭菇燉湯 (Lion's Mane Mushroom Soup)</li>
-      <li>白靈菇炒西蘭花 (Stir-Fried White Beech Mushroom with Broccoli)</li>
-      <li>雲耳炒芥蘭 (Stir-Fried Cloud Ear Fungus with Chinese Kale)</li>
-      <li>蟹味菇清炒 (Stir-Fried Seafood Mushrooms)</li>
-      <li>秀珍菇燒豆腐 (Braised Tofu with Brown Beech Mushrooms)</li>
-      <li>花菇蒸滑雞 (Steamed Chicken with Premium Shiitake Mushrooms)</li>
-      <li>草菇炒青椒 (Stir-Fried Straw Mushrooms with Green Peppers)</li>
-      <li>鴻喜菇湯 (Pink Oyster Mushroom Soup)</li>
-      <li>白玉菇清炒豆苗 (Stir-Fried White Beech Mushrooms with Pea Shoots)</li>
-      <li>姬松茸湯 (Agaricus Blazei Mushroom Soup)</li>
-    </ul>
+      <h2 id="mushroom">菌菇類菜式</h2>
+      <ul class="list">
+        <li data-recipe="香菇雞湯：乾香菇泡發，雞肉切塊，加入薑片、蔥段，小火燉煮1小時。">香菇雞湯 (Chicken Soup with Shiitake Mushrooms)</li>
+        <li data-recipe="金針菇炒蛋：金針菇切段，雞蛋打散，加入鹽調味，大火快炒至熟。">金針菇炒蛋 (Stir-Fried Enoki Mushrooms with Eggs)</li>
+        <li data-recipe="茶樹菇燉雞：茶樹菇泡發，雞肉切塊，加入薑片、蔥段，小火燉煮1小時。">茶樹菇燉雞 (Braised Chicken with Tea Tree Mushrooms)</li>
+        <li data-recipe="蠔油炒蘑菇：蘑菇切片，加入無糖蠔油、蒜末，大火快炒至熟。">蠔油炒蘑菇 (Stir-Fried Mushrooms in Oyster Sauce, no sugar)</li>
+        <li data-recipe="雜菌扒芥蘭：多種菌菇切片，芥蘭切段，加入蒜末，大火快炒至熟。">雜菌扒芥蘭 (Braised Mixed Mushrooms with Kale)</li>
+        <li data-recipe="香煎杏鮑菇：杏鮑菇切片，用鹽、黑胡椒醃製，中火煎至兩面金黃。">香煎杏鮑菇 (Pan-Seared King Oyster Mushrooms)</li>
+        <li data-recipe="松露炒蛋：雞蛋打散，加入松露醬、鹽調味，小火炒至凝固。">松露炒蛋 (Scrambled Eggs with Truffle)</li>
+        <li data-recipe="金針菇豆腐湯：金針菇切段，豆腐切塊，加入薑片、蔥段煮湯。">金針菇豆腐湯 (Enoki Mushroom and Tofu Soup)</li>
+        <li data-recipe="菌菇蒸蛋：多種菌菇切丁，雞蛋打散，加入鹽調味，蒸至凝固。">菌菇蒸蛋 (Steamed Egg with Mushrooms)</li>
+        <li data-recipe="雜菌湯：多種菌菇切片，加入薑片、蔥段，小火煮30分鐘。">雜菌湯 (Mixed Mushroom Soup)</li>
+        <li data-recipe="猴頭菇燉湯：猴頭菇泡發，雞肉切塊，加入薑片、蔥段，小火燉煮1小時。">猴頭菇燉湯 (Lion's Mane Mushroom Soup)</li>
+        <li data-recipe="白靈菇炒西蘭花：白靈菇切片，西蘭花切小朵，加入蒜末，大火快炒至熟。">白靈菇炒西蘭花 (Stir-Fried White Beech Mushroom with Broccoli)</li>
+        <li data-recipe="雲耳炒芥蘭：雲耳泡發，芥蘭切段，加入蒜末，大火快炒至熟。">雲耳炒芥蘭 (Stir-Fried Cloud Ear Fungus with Chinese Kale)</li>
+        <li data-recipe="蟹味菇清炒：蟹味菇切片，加入蒜末，大火快炒至熟。">蟹味菇清炒 (Stir-Fried Seafood Mushrooms)</li>
+        <li data-recipe="秀珍菇燒豆腐：秀珍菇切片，豆腐切塊，加入無糖醬油、蒜末，小火煮至入味。">秀珍菇燒豆腐 (Braised Tofu with Brown Beech Mushrooms)</li>
+        <li data-recipe="花菇蒸滑雞：花菇切片，雞肉切塊，加入薑片、蔥段，蒸至入味。">花菇蒸滑雞 (Steamed Chicken with Premium Shiitake Mushrooms)</li>
+        <li data-recipe="草菇炒青椒：草菇切片，青椒切段，加入蒜末，大火快炒至熟。">草菇炒青椒 (Stir-Fried Straw Mushrooms with Green Peppers)</li>
+        <li data-recipe="鴻喜菇湯：鴻喜菇切片，加入薑片、蔥段，小火煮30分鐘。">鴻喜菇湯 (Pink Oyster Mushroom Soup)</li>
+        <li data-recipe="白玉菇清炒豆苗：白玉菇切片，豆苗切段，加入蒜末，大火快炒至熟。">白玉菇清炒豆苗 (Stir-Fried White Beech Mushrooms with Pea Shoots)</li>
+        <li data-recipe="姬松茸湯：姬松茸切片，加入薑片、蔥段，小火煮30分鐘。">姬松茸湯 (Agaricus Blazei Mushroom Soup)</li>
+      </ul>
 
-    <h2>豆類菜式</h2>
-    <ul>
-      <li>麻婆豆腐 (Mapo Tofu, low carb)</li>
-      <li>醬燒豆腐 (Braised Tofu in Soy Sauce)</li>
-      <li>黃豆芽炒肉絲 (Stir-Fried Soybean Sprouts with Pork Strips)</li>
-      <li>涼拌豆腐皮 (Cold Tofu Skin Salad)</li>
-      <li>豆腐蒸蛋 (Steamed Tofu with Egg)</li>
-      <li>黃豆雞湯 (Soybean Chicken Soup)</li>
-      <li>紅燒豆腐 (Braised Tofu with Soy Sauce)</li>
-      <li>豆豉蒸排骨 (Steamed Pork Ribs with Fermented Black Beans)</li>
-      <li>豆腐煎餅 (Tofu Pancakes)</li>
-      <li>涼拌毛豆 (Cold Edamame Salad)</li>
-    </ul>
+      <h2 id="bean">豆類菜式</h2>
+      <ul class="list">
+        <li data-recipe="麻婆豆腐：豆腐切塊，加入無糖豆瓣醬、花椒、蒜末，小火煮至入味。">麻婆豆腐 (Mapo Tofu, low carb)</li>
+        <li data-recipe="醬燒豆腐：豆腐切塊，用無糖醬油、薑片、蔥段，小火煮至入味。">醬燒豆腐 (Braised Tofu in Soy Sauce)</li>
+        <li data-recipe="黃豆芽炒肉絲：黃豆芽洗淨，豬肉切絲，加入蒜末，大火快炒至熟。">黃豆芽炒肉絲 (Stir-Fried Soybean Sprouts with Pork Strips)</li>
+        <li data-recipe="涼拌豆腐皮：豆腐皮切絲，加入蔥花、蒜末、無糖醬油拌勻。">涼拌豆腐皮 (Cold Tofu Skin Salad)</li>
+        <li data-recipe="豆腐蒸蛋：豆腐切塊，雞蛋打散，加入鹽調味，蒸至凝固。">豆腐蒸蛋 (Steamed Tofu with Egg)</li>
+        <li data-recipe="黃豆雞湯：黃豆泡發，雞肉切塊，加入薑片、蔥段，小火燉煮1小時。">黃豆雞湯 (Soybean Chicken Soup)</li>
+        <li data-recipe="紅燒豆腐：豆腐切塊，用無糖醬油、薑片、蔥段，小火煮至入味。">紅燒豆腐 (Braised Tofu with Soy Sauce)</li>
+        <li data-recipe="豆豉蒸排骨：豆豉、排骨、豆腐，加入無糖醬油、薑片、蔥段，蒸至入味。">豆豉蒸排骨 (Steamed Pork Ribs with Fermented Black Beans)</li>
+        <li data-recipe="豆腐煎餅：豆腐切塊，加入豆豉、蔥花、雞蛋，煎至兩面金黃。">豆腐煎餅 (Tofu Pancakes)</li>
+        <li data-recipe="涼拌毛豆：毛豆洗淨，加入無糖醬油、醋拌勻。">涼拌毛豆 (Cold Edamame Salad)</li>
+      </ul>
 
-    <h2>蛋類菜式</h2>
-    <ul>
-      <li>番茄炒蛋 (Tomato and Egg Stir-Fry)</li>
-      <li>蒸水蛋 (Steamed Egg Custard)</li>
-      <li>芙蓉蛋 (Chinese Omelette)</li>
-      <li>茶葉蛋 (Tea Eggs)</li>
-      <li>苦瓜炒蛋 (Bitter Melon with Eggs)</li>
-      <li>滑蛋蝦仁 (Egg and Shrimp Stir-Fry)</li>
-      <li>蛋花湯 (Egg Drop Soup)</li>
-      <li>木耳炒蛋 (Black Fungus with Eggs)</li>
-      <li>鹹蛋蒸肉餅 (Steamed Pork Patty with Salted Egg)</li>
-      <li>冬菇蒸蛋 (Steamed Egg with Shiitake Mushrooms)</li>
-      <li>日式煎蛋卷 (Japanese Tamagoyaki, no sugar)</li>
-      <li>洋蔥炒蛋 (Onion and Egg Stir-Fry)</li>
-    </ul>
+      <h2 id="egg">蛋類菜式</h2>
+      <ul class="list">
+        <li data-recipe="番茄炒蛋：番茄切塊，雞蛋打散，加入鹽調味，大火快炒至熟。">番茄炒蛋 (Tomato and Egg Stir-Fry)</li>
+        <li data-recipe="蒸水蛋：雞蛋打散，加入溫水、鹽調味，蒸至凝固。">蒸水蛋 (Steamed Egg Custard)</li>
+        <li data-recipe="芙蓉蛋：雞蛋打散，加入蔥花、鹽調味，小火炒至凝固。">芙蓉蛋 (Chinese Omelette)</li>
+        <li data-recipe="茶葉蛋：雞蛋煮熟，敲裂蛋殼，加入茶葉、八角、無糖醬油，小火煮30分鐘。">茶葉蛋 (Tea Eggs)</li>
+        <li data-recipe="苦瓜炒蛋：苦瓜切片，雞蛋打散，加入鹽調味，大火快炒至熟。">苦瓜炒蛋 (Bitter Melon with Eggs)</li>
+        <li data-recipe="滑蛋蝦仁：雞蛋打散，加入蝦仁、蔥花、鹽調味，大火快炒至熟。">滑蛋蝦仁 (Egg and Shrimp Stir-Fry)</li>
+        <li data-recipe="蛋花湯：雞蛋打散，加入水、鹽調味，煮至蛋花浮起。">蛋花湯 (Egg Drop Soup)</li>
+        <li data-recipe="木耳炒蛋：木耳泡發，雞蛋打散，加入鹽調味，大火快炒至熟。">木耳炒蛋 (Black Fungus with Eggs)</li>
+        <li data-recipe="鹹蛋蒸肉餅：鹹蛋切半，夾入肉餅，加入無糖醬油、薑片、蔥段，蒸至入味。">鹹蛋蒸肉餅 (Steamed Pork Patty with Salted Egg)</li>
+        <li data-recipe="冬菇蒸蛋：冬菇切片，雞蛋打散，加入無糖醬油、薑片、蔥段，蒸至入味。">冬菇蒸蛋 (Steamed Egg with Shiitake Mushrooms)</li>
+        <li data-recipe="日式煎蛋卷：雞蛋打散，加入無糖醬油、蔥花、鹽調味，煎至兩面金黃。">日式煎蛋卷 (Japanese Tamagoyaki, no sugar)</li>
+        <li data-recipe="洋蔥炒蛋：洋蔥切絲，雞蛋打散，加入鹽調味，大火快炒至熟。">洋蔥炒蛋 (Onion and Egg Stir-Fry)</li>
+      </ul>
 
-    <h2>蔬菜類菜式</h2>
-    <ul>
-      <li>蒜蓉西蘭花 (Garlic Stir-Fried Broccoli)</li>
-      <li>清炒芥蘭 (Stir-Fried Chinese Kale)</li>
-      <li>涼拌黃瓜 (Cold Cucumber Salad)</li>
-      <li>茄子燉豆腐 (Braised Eggplant with Tofu)</li>
-      <li>蓮藕炒木耳 (Stir-Fried Lotus Root with Black Fungus)</li>
-      <li>冬瓜排骨湯 (Winter Melon and Pork Rib Soup)</li>
-      <li>炒菠菜 (Stir-Fried Spinach)</li>
-      <li>蒜炒蘆筍 (Garlic Stir-Fried Asparagus)</li>
-      <li>涼拌油麥菜 (Cold Romaine Lettuce Salad)</li>
-      <li>香菇扒白菜 (Braised Mushrooms with Bok Choy)</li>
-    </ul>
-
-    <h2>甜品類菜式</h2>
-    <ul>
-      <li>薑汁藏奶 (Ginger Milk Custard, no sugar, unsweetened coconut milk)</li>
-      <li>椰奶炖蛋 (Coconut Milk Custard)</li>
-      <li>杏仁豆腐 (Almond Tofu, no sugar)</li>
-      <li>涼拌雪耳 (Cold Snow Fungus Salad)</li>
-      <li>百合銀耳湯 (Lily Bulb and Snow Fungus Soup)</li>
-    </ul>
-
-    <h2>日本風料理</h2>
-    <ul>
-      <li>日式味噌湯 (Japanese Miso Soup)</li>
-      <li>照燒雞扒 (Teriyaki Chicken, no sugar)</li>
-      <li>三文魚刺身 (Salmon Sashimi)</li>
-      <li>烤秋刀魚 (Grilled Sanma)</li>
-      <li>日式豆腐鍋 (Japanese Tofu Hot Pot)</li>
-    </ul>
+      <h2 id="vegetable">蔬菜類菜式</h2>
+      <ul class="list">
+        <li data-recipe="蒜蓉西蘭花：西蘭花切小朵，加入蒜末，大火快炒至熟。">蒜蓉西蘭花 (Garlic Stir-Fried Broccoli)</li>
+        <li data-recipe="清炒芥蘭：芥蘭切段，加入蒜末，大火快炒至熟。">清炒芥蘭 (Stir-Fried Chinese Kale)</li>
+        <li data-recipe="涼拌黃瓜：黃瓜切片，加入蒜末、無糖醬油、醋拌勻。">涼拌黃瓜 (Cold Cucumber Salad)</li>
+        <li data-recipe="茄子燉豆腐：茄子切塊，豆腐切塊，加入無糖醬油、蒜末，小火煮至入味。">茄子燉豆腐 (Braised Eggplant with Tofu)</li>
+        <li data-recipe="蓮藕炒木耳：蓮藕切片，木耳泡發，加入蒜末，大火快炒至熟。">蓮藕炒木耳 (Stir-Fried Lotus Root with Black Fungus)</li>
+        <li data-recipe="冬瓜排骨湯：冬瓜切塊，排骨切塊，加入無糖醬油、薑片、蔥段，小火燉煮1小時。">冬瓜排骨湯 (Winter Melon and Pork Rib Soup)</li>
+        <li data-recipe="炒菠菜：菠菜切段，加入蒜末，大火快炒至熟。">炒菠菜 (Stir-Fried Spinach)</li>
+        <li data-recipe="蒜炒蘆筍：蘆筍切段，加入蒜末，大火快炒至熟。">蒜炒蘆筍 (Garlic Stir-Fried Asparagus)</li>
+      </ul>
+    </section>
   </div>
+
+  <!-- Modal -->
+  <div id="recipeModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3 class="modal-title">食譜</h3>
+      <div class="modal-recipe"></div>
+    </div>
+  </div>
+
+  <script>
+    // Add smooth scrolling and active link highlighting
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-link:not(.external)');
+      const sections = document.querySelectorAll('h2[id]');
+      const modal = document.getElementById('recipeModal');
+      const modalRecipe = document.querySelector('.modal-recipe');
+      const closeBtn = document.querySelector('.modal-close');
+      const listItems = document.querySelectorAll('.list li');
+
+      // Modal functionality
+      listItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const recipe = this.getAttribute('data-recipe');
+          modalRecipe.textContent = recipe;
+          modal.style.display = 'flex';
+        });
+      });
+
+      closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+      });
+
+      window.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+
+      // Function to update active link
+      function updateActiveLink() {
+        const scrollPosition = window.scrollY + 100;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute('id');
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+
+      // Add click event for smooth scrolling
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          if (!this.classList.contains('external')) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+              window.scrollTo({
+                top: targetSection.offsetTop - 80,
+                behavior: 'smooth'
+              });
+            }
+          }
+        });
+      });
+
+      // Update active link on scroll
+      window.addEventListener('scroll', updateActiveLink);
+      // Initial update
+      updateActiveLink();
+    });
+  </script>
 </body>
 </html>
